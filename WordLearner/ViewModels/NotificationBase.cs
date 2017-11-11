@@ -8,49 +8,23 @@ using System.Threading.Tasks;
 
 namespace WordLearner.ViewModels
 {
-    public class NotificationBase : INotifyPropertyChanged
+    public class BaseModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        // SetField (Name, value); // where there is a data member
-        protected bool SetProperty<T>(ref T field, T value, [CallerMemberName] string property
-           = null)
+        protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
         {
-            if (EqualityComparer<T>.Default.Equals(field, value)) return false;
-            field = value;
-            RaisePropertyChanged(property);
+            if (object.Equals(storage, value)) return false;
+            storage = value;
+            this.OnPropertyChaned(propertyName);
             return true;
         }
 
-        // SetField(()=> somewhere.Name = value; somewhere.Name, value) 
-        // Advanced case where you rely on another property
-        protected bool SetProperty<T>(T currentValue, T newValue, Action DoSet,
-            [CallerMemberName] string property = null)
+        private void OnPropertyChaned(string propertyName)
         {
-            if (EqualityComparer<T>.Default.Equals(currentValue, newValue)) return false;
-            DoSet.Invoke();
-            RaisePropertyChanged(property);
-            return true;
-        }
-
-        protected void RaisePropertyChanged(string property)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(property));
-            }
-        }
-    }
-
-    public class NotificationBase<T> : NotificationBase where T : class, new()
-    {
-        protected T This;
-
-        public static implicit operator T(NotificationBase<T> thing) { return thing.This; }
-
-        public NotificationBase(T thing = null)
-        {
-            This = (thing == null) ? new T() : thing;
+            var eventHandler = this.PropertyChanged;
+            if (eventHandler != null)
+                eventHandler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

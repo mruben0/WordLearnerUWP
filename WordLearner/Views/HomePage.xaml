@@ -6,11 +6,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <!--Style="{StaticResource TitleTextBlockStyle}"-->
 
     <Grid Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}">
-        <TextBlock Style="{StaticResource TitleTextBlockStyle}"
+        <TextBox 
                            FontSize="28"
                            VerticalAlignment="Top"
-                           Text="{x:Bind ViewModel.DefaultTest.Testing}"/>
+                           Text="{x:Bind ViewModel.testing, Mode=TwoWay}"/>
+        <TextBlock 
+                           FontSize="28"
+                           VerticalAlignment="Center"
+                           Text="{x:Bind ViewModel.testing, Mode=TwoWay}"/>
     </Grid>
 </Page>

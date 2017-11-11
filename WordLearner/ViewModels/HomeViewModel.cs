@@ -6,18 +6,20 @@ using System.Threading.Tasks;
 
 namespace WordLearner.ViewModels
 {
-    public class Test : NotificationBase
+    public class Test 
     {
-        private string testing;
-        public string Testing
-        {
-            get => "Done";
-            set => SetProperty(ref testing, value);
-        }
+        
+        public string Testing = "Done";
     }
-    public class HomeViewModel
+    public class HomeViewModel : BaseModel
     {
-        private Test defaultTest = new Test();
-        public Test DefaultTest { get => this.defaultTest; }
+        private Test test = new Test();
+        
+       
+        public string testing
+        {
+            get => test.Testing;
+            set => SetProperty(ref test.Testing, value);            
+        }
     }
 }
