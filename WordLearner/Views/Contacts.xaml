@@ -10,6 +10,6 @@
         <TextBlock Style="{StaticResource TitleTextBlockStyle}"
                            FontSize="28"
                            VerticalAlignment="Top"
-                           Text="Contacts"/>
+                           Text="I dont have VIewModel"/>
     </Grid>
 </Page>
