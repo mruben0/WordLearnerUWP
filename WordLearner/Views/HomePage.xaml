@@ -13,9 +13,9 @@
                            FontSize="28"
                            VerticalAlignment="Top"
                            Text="{x:Bind ViewModel.testing, Mode=TwoWay}"/>
-        <TextBlock 
+        <Button
                            FontSize="28"
                            VerticalAlignment="Center"
-                           Text="{x:Bind ViewModel.testing, Mode=TwoWay}"/>
+                          Command="{x:Bind ViewModel.TestCommand}"/>
     </Grid>
 </Page>

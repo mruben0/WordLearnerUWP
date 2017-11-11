@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace WordLearner.ViewModels
 {
@@ -13,8 +14,21 @@ namespace WordLearner.ViewModels
     }
     public class HomeViewModel : BaseModel
     {
+        public ICommand TestCommand
+        {
+
+            get => new RelayCommand(() =>
+            {
+                testing = "Wow, it's worked";
+            });
+        }
+
         private Test test = new Test();
-        
+
+        public HomeViewModel()
+        {
+            
+        }
        
         public string testing
         {
