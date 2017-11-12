@@ -13,13 +13,10 @@
                     Loaded="NavView_Loaded">
 
         <NavigationView.MenuItems>
-            <NavigationViewItem Content="Home" Tag="Home">
-                <NavigationViewItem.Icon>
-                    <FontIcon Glyph="&#xE10F;"/>
-                </NavigationViewItem.Icon>
-            </NavigationViewItem>
+            <NavigationViewItem Icon="Street" Content="Home" Tag="Home"/>   
             <NavigationViewItemSeparator/>
             <NavigationViewItemHeader Margin="40,0,0,0" Content="Main" Tag="Main"/>
+            <NavigationViewItem Icon="OpenLocal" Content="Main" Tag="Main"/>
             <NavigationViewItem Icon="Slideshow" Content="Learn Words" Tag="LearnWords"/>
             <NavigationViewItem Icon="Library" Content="Your Progress" Tag="Progress"/>
             <NavigationViewItem Icon="Help" Content="Help" Tag="Help"/>

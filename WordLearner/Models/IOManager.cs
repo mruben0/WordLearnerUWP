@@ -13,7 +13,7 @@ namespace WordLearner.Models
 
         public bool IsValidFormat(string format, string path)
         {
-            if (path.Length >= format.Length)
+            if (path.Length <= format.Length)
             {
                 return false;
             }

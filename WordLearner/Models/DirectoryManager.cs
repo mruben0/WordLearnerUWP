@@ -9,36 +9,41 @@ namespace WordLearner.Models
 {
     public class DirectoryManager
     {       
-        public string myFolder = "";
-
-        public DirectoryManager(string ProgramFolder)
+        public string myFolder = "";       
+        
+        public string CreateAppdata(string ProgramFolder)
         {
-            string appData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string appData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             myFolder = Path.Combine(appData, ProgramFolder);
+            return myFolder;
         }
 
-        public void GetFiles(string path, string destination)
+        public void CopyFiles(string path, string destination)
         {           
 
-            string[] fileFullNames = Directory.GetFiles(path, "*.*");
+           
             if (!Directory.Exists(destination))
             {
                 Directory.CreateDirectory(destination);
             }
 
-            if (fileFullNames.Length > 0)
-            {
-                foreach (var fileFullName in fileFullNames)
-                {
-                    string fileName = fileFullName.Substring(path.Length + 1);
+            string fileName = Path.GetFileName(path);
+            string destFile = Path.Combine(destination, fileName);
+            File.Copy(path, destFile, true);
 
-                    string dest = Path.Combine(destination, fileName);
-                                          
-                    File.Copy(fileFullName, dest, true);                
-                    
-                }
+            //if (fileFullNames.Length > 0)
+            //{
+            //    foreach (var fileFullName in fileFullNames)
+            //    {
+            //        string fileName = path.Substring(path.Length + 1);
 
-            }          
+            //        string dest = Path.Combine(destination, fileName);
+
+            //        File.Copy(fileFullName, dest, true);                
+
+            //    }
+
+            //}          
         }     
 
         public List<string> GetFileList(string path, string format)
