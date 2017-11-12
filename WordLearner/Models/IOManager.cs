@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace WordLearner.Models
 {
     public class IOManager
-    {       
+    {
 
         public bool IsValidFormat(string format, string path)
         {

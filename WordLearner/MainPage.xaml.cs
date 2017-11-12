@@ -65,7 +65,7 @@ namespace WordLearner
 
         private void NavView_Loaded(object sender, RoutedEventArgs e)
         {
-            ContentFrame.Navigate(typeof(Main));
+            ContentFrame.Navigate(typeof(HomePage));            
         }
     }
 }

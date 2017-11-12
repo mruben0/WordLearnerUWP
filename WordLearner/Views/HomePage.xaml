@@ -8,14 +8,33 @@
     mc:Ignorable="d">
     <!--Style="{StaticResource TitleTextBlockStyle}"-->
 
-    <Grid Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}">
-        <TextBox 
-                           FontSize="28"
-                           VerticalAlignment="Top"
-                           Text="{x:Bind ViewModel.testing, Mode=TwoWay}"/>
-        <Button
-                           FontSize="28"
-                           VerticalAlignment="Center"
-                          Command="{x:Bind ViewModel.TestCommand}"/>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <HubSection Grid.Row="0" Header="TestingHEader" Margin="0,5,0,0" Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}" Width="Auto" Height="250">
+            <DataTemplate>
+                <Grid>
+                    <TextBlock Text="The most recent news will be here." 
+                           Style="{ThemeResource BodyTextBlockStyle}"/>
+                </Grid>
+            </DataTemplate>
+        </HubSection>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <HubSection Grid.Row="0" Grid.Column="0" Header="Main" Margin="3,5,3,0" Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}" Width="Auto" Height="250"></HubSection>
+            <HubSection Grid.Row="0" Grid.Column="1" Header="Main" Margin="3,5,3,0" Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}" Width="Auto" Height="250"></HubSection>
+            <HubSection Grid.Row="1" Grid.Column="0" Header="Main" Margin="3,5,3,0" Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}" Width="Auto" Height="250"></HubSection>
+            <HubSection Grid.Row="1" Grid.Column="1" Header="Main" Margin="3,5,3,0" Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}" Width="Auto" Height="250"></HubSection>
+        </Grid>                                                            
     </Grid>
 </Page>
