@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WordLearner.ViewModels;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,6 +26,38 @@ namespace WordLearner
         public LearnWords()
         {
             this.InitializeComponent();
+            this.viewModel = new LearnWordsViewModel();
+        }
+
+        public LearnWordsViewModel viewModel;
+
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.FileList.Visibility == Visibility.Collapsed)
+            {
+                this.FileList.Visibility = Visibility.Visible;
+            }
+            else
+                this.FileList.Visibility = Visibility.Collapsed;
+        }
+
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.PannelChangeLabels.Visibility == Visibility.Collapsed)
+            {
+                this.PannelChangeLabels.Visibility = Visibility.Visible;
+            }
+            else
+                this.PannelChangeLabels.Visibility = Visibility.Collapsed;
+        }
+
+        private void HidePannel_Click(object sender, RoutedEventArgs e)
+        {
+            this.PannelChangeLabels.Visibility = Visibility.Collapsed;
         }
     }
 }

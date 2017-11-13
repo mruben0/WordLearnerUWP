@@ -6,38 +6,38 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    <NavigationView Background="{ThemeResource SystemControlChromeHighAcrylicWindowMediumBrush}" 
+    <NavigationView Background="{ThemeResource SystemControlChromeHighAcrylicWindowMediumBrush}"
                     x:Name="NavView"
                     ItemInvoked="NavView_ItemInvoked"
                     SelectionChanged="NavView_SelectionChanged"
                     Loaded="NavView_Loaded">
 
         <NavigationView.MenuItems>
-            <NavigationViewItem Icon="Street" Content="Home" Tag="Home"/>   
-            <NavigationViewItemSeparator/>
-            <NavigationViewItemHeader Margin="40,0,0,0" Content="Main" Tag="Main"/>
-            <NavigationViewItem Icon="OpenLocal" Content="Main" Tag="Main"/>
-            <NavigationViewItem Icon="Slideshow" Content="Learn Words" Tag="LearnWords"/>
-            <NavigationViewItem Icon="Library" Content="Your Progress" Tag="Progress"/>
-            <NavigationViewItem Icon="Help" Content="Help" Tag="Help"/>
-            <NavigationViewItem Icon="ContactInfo" Content="Contact us" Tag="Contacts"/>
+            <NavigationViewItem Icon="Street" Content="Home" Tag="Home" />
+            <NavigationViewItemSeparator />
+            <NavigationViewItemHeader Margin="40,0,0,0" Content="Main" Tag="Main" />
+            <NavigationViewItem Icon="OpenLocal" Content="Main" Tag="Main" />
+            <NavigationViewItem Icon="Slideshow" Content="Learn Words" Tag="LearnWords" />
+            <NavigationViewItem Icon="Library" Content="Your Progress" Tag="Progress" />
+            <NavigationViewItem Icon="Help" Content="Help" Tag="Help" />
+            <NavigationViewItem Icon="ContactInfo" Content="Contact us" Tag="Contacts" />
         </NavigationView.MenuItems>
 
         <NavigationView.AutoSuggestBox>
-            <AutoSuggestBox x:Name="ASB" QueryIcon="Find"/>
+            <AutoSuggestBox x:Name="ASB" QueryIcon="Find" />
         </NavigationView.AutoSuggestBox>
 
         <NavigationView.HeaderTemplate>
             <DataTemplate>
                 <Grid Margin="24,24,0,0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <TextBlock Name="Header" Style="{StaticResource TitleTextBlockStyle}"
                            FontSize="28"
                            VerticalAlignment="Center"
-                           Text="Welcome"/>
+                           Text="Learn" />
                 </Grid>
             </DataTemplate>
         </NavigationView.HeaderTemplate>
@@ -45,10 +45,9 @@
         <Frame x:Name="ContentFrame" Margin="24">
             <Frame.ContentTransitions>
                 <TransitionCollection>
-                    <NavigationThemeTransition/>
+                    <NavigationThemeTransition />
                 </TransitionCollection>
             </Frame.ContentTransitions>
         </Frame>
-
     </NavigationView>
 </Page>

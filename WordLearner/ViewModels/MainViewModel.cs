@@ -4,55 +4,47 @@ using Windows.Storage;
 using Windows.Storage.Pickers;
 using WordLearner.Models;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace WordLearner.ViewModels
 {
     public class MainViewModel : BaseModel
     {
         public MainViewModel()
         {
-            test t1 = new test() { Name = "aadad" };
-            test t = new test() { Name = "aadad" };
-            test t2 = new test() { Name = "Gago" };
-            test t3 = new test() { Name = "Gago" };
+            var DM = new DirectoryManager();
+            var appdata = DM.GetAppDataPath("WordLearner");
+            List<string> filecollection = DM.GetFileList(appdata, "xlsx");
 
-            collection.Add(t1);
-            collection.Add(t);
-            collection.Add(t2);
-            collection.Add(t3);
+            for (int i = 0; i < filecollection.Count; i++)
+            {
+                collection.Add(new File() { Name = filecollection.ElementAt(i) });
+            }
         }
-        public ObservableCollection<test> _collection = new ObservableCollection<test>();
-        public ObservableCollection<test> collection
+
+        public ObservableCollection<File> _collection = new ObservableCollection<File>();
+
+        public ObservableCollection<File> collection
         {
             get => _collection;
             set => SetProperty(ref _collection, value);
         }
 
         private string path;
-        public  string Path
+
+        public string Path
         {
             get => path;
             set => SetProperty(ref path, value);
         }
 
-        private test selectedFile;
-        public test SelectedFile
+        private File selectedFile;
+
+        public File SelectedFile
         {
             get => selectedFile;
             set => SetProperty(ref selectedFile, value);
-        }
-
-        public ICommand AddSelected
-        {
-            get => new RelayCommand(() =>
-            {
-                IOManager iOManager = new IOManager();
-                if (iOManager.IsValidFormat("xlsx", Path) || iOManager.IsValidFormat("xls", Path))
-                {
-                    DirectoryManager directoryManager = new DirectoryManager();
-                    string appdata = directoryManager.GetAppDataPath("WordLearner");
-                  
-                }
-            });
         }
 
         public ICommand TestGetFIles
@@ -64,16 +56,25 @@ namespace WordLearner.ViewModels
                 openPicker.SuggestedStartLocation = PickerLocationId.Desktop;
                 openPicker.FileTypeFilter.Add(".xlsx");
                 openPicker.FileTypeFilter.Add(".xls");
+                openPicker.FileTypeFilter.Add(".WL");
                 StorageFile file = await openPicker.PickSingleFileAsync();
                 if (file != null)
                 {
                     var DM = new DirectoryManager();
                     var appdata = DM.GetAppDataPath("WordLearner");
                     StorageFolder dest = await StorageFolder.GetFolderFromPathAsync(appdata);
-                    await file.CopyAsync(dest);
-                    DM.GetFileList(appdata, "xlsx");
-                    test t4 = new test() { Name = file.Name };
-                    collection.Add(t4);
+
+                    if (await DM.IfStorageItemExist(dest, file.Name) == false)
+                    {
+                        await file.CopyAsync(dest);
+                        List<string> filecollection = DM.GetFileList(appdata, "xlsx");
+                        collection.Add(new File() { Name = file.Name });
+                    }
+                    else
+                    {
+                        var dialog = new Windows.UI.Popups.MessageDialog("Your file already exist. \n Please rename or choose another");
+                        await dialog.ShowAsync();
+                    }
                 }
                 else
                 {
@@ -85,17 +86,21 @@ namespace WordLearner.ViewModels
 
         public ICommand DeleteSelected
         {
-            get => new RelayCommand(() =>
+            get => new RelayCommand(async () =>
              {
                  if (SelectedFile != null)
                  {
-                     collection.Remove(SelectedFile);
+                     var DM = new DirectoryManager();
+                     var appdata = DM.GetAppDataPath("WordLearner");
+                     StorageFolder dest = await StorageFolder.GetFolderFromPathAsync(appdata);
+                     var fileForDelete = await dest.GetFileAsync(SelectedFile.Name);
+                     await fileForDelete.DeleteAsync();
+                     collection.Remove(collection.FirstOrDefault(e => e.Name == SelectedFile.Name));
                  }
-                 
              });
         }
 
-        public class test
+        public class File
         {
             public string Name { get; set; }
         }

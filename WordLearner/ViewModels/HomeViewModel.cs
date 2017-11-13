@@ -7,16 +7,15 @@ using System.Windows.Input;
 
 namespace WordLearner.ViewModels
 {
-    public class Test 
+    public class Test
     {
-        
         public string Testing = "Done";
     }
+
     public class HomeViewModel : BaseModel
     {
         public ICommand TestCommand
         {
-
             get => new RelayCommand(() =>
             {
                 testing = "Wow, it's worked";
@@ -27,13 +26,12 @@ namespace WordLearner.ViewModels
 
         public HomeViewModel()
         {
-            
         }
-       
+
         public string testing
         {
             get => test.Testing;
-            set => SetProperty(ref test.Testing, value);            
+            set => SetProperty(ref test.Testing, value);
         }
     }
 }
