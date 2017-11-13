@@ -20,7 +20,7 @@
                     <ColumnDefinition  Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <TextBox Grid.Column="0" Name="PathBox" Text="{x:Bind ViewModel.Path, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextChanged="PathBox_TextChanged" Height="30" />
-                <Button Grid.Column="1" Name="FilePicker" Click="FilePicker_Click" Height="50" Width="80" Content="Browse" HorizontalAlignment="Right" />
+                <Button Grid.Column="1" Name="FilePicker" Command="{x:Bind ViewModel.TestGetFIles}" Height="50" Width="80" Content="Browse" HorizontalAlignment="Right" />
             </Grid>        
 
         <GridView Margin="0,10,0,0" Grid.Row="1" x:Name="itemListView"

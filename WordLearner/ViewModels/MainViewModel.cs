@@ -1,7 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
+using Windows.Storage;
+using Windows.Storage.Pickers;
 using WordLearner.Models;
-
+using System;
 namespace WordLearner.ViewModels
 {
     public class MainViewModel : BaseModel
@@ -47,8 +49,36 @@ namespace WordLearner.ViewModels
                 if (iOManager.IsValidFormat("xlsx", Path) || iOManager.IsValidFormat("xls", Path))
                 {
                     DirectoryManager directoryManager = new DirectoryManager();
-                    string appdata = directoryManager.CreateAppdata("WordLearner");
-                    directoryManager.CopyFiles(path, appdata);
+                    string appdata = directoryManager.GetAppDataPath("WordLearner");
+                  
+                }
+            });
+        }
+
+        public ICommand TestGetFIles
+        {
+            get => new RelayCommand(async () =>
+            {
+                FileOpenPicker openPicker = new FileOpenPicker();
+                openPicker.ViewMode = PickerViewMode.Thumbnail;
+                openPicker.SuggestedStartLocation = PickerLocationId.Desktop;
+                openPicker.FileTypeFilter.Add(".xlsx");
+                openPicker.FileTypeFilter.Add(".xls");
+                StorageFile file = await openPicker.PickSingleFileAsync();
+                if (file != null)
+                {
+                    var DM = new DirectoryManager();
+                    var appdata = DM.GetAppDataPath("WordLearner");
+                    StorageFolder dest = await StorageFolder.GetFolderFromPathAsync(appdata);
+                    await file.CopyAsync(dest);
+                    DM.GetFileList(appdata, "xlsx");
+                    test t4 = new test() { Name = file.Name };
+                    collection.Add(t4);
+                }
+                else
+                {
+                    var dialog = new Windows.UI.Popups.MessageDialog("Please Choose File");
+                    await dialog.ShowAsync();
                 }
             });
         }

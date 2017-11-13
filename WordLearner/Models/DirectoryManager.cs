@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage;
 
 namespace WordLearner.Models
 {
@@ -11,40 +12,17 @@ namespace WordLearner.Models
     {       
         public string myFolder = "";       
         
-        public string CreateAppdata(string ProgramFolder)
+        public string GetAppDataPath(string ProgramFolder)
         {
             string appData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             myFolder = Path.Combine(appData, ProgramFolder);
+            if (!Directory.Exists(myFolder))
+            {
+                Directory.CreateDirectory(myFolder);
+            }
             return myFolder;
         }
 
-        public void CopyFiles(string path, string destination)
-        {           
-
-           
-            if (!Directory.Exists(destination))
-            {
-                Directory.CreateDirectory(destination);
-            }
-
-            string fileName = Path.GetFileName(path);
-            string destFile = Path.Combine(destination, fileName);
-            File.Copy(path, destFile, true);
-
-            //if (fileFullNames.Length > 0)
-            //{
-            //    foreach (var fileFullName in fileFullNames)
-            //    {
-            //        string fileName = path.Substring(path.Length + 1);
-
-            //        string dest = Path.Combine(destination, fileName);
-
-            //        File.Copy(fileFullName, dest, true);                
-
-            //    }
-
-            //}          
-        }     
 
         public List<string> GetFileList(string path, string format)
         {

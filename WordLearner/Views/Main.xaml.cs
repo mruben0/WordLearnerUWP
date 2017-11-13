@@ -20,23 +20,7 @@ namespace WordLearner
         }
         public MainViewModel ViewModel { get; set; }
 
-        private async void FilePicker_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-            FileOpenPicker openPicker = new FileOpenPicker();
-            openPicker.ViewMode = PickerViewMode.Thumbnail;
-            openPicker.SuggestedStartLocation = PickerLocationId.Desktop;
-            openPicker.FileTypeFilter.Add(".xlsx");
-            openPicker.FileTypeFilter.Add(".xls");
-            StorageFile file = await openPicker.PickSingleFileAsync();
-            if ( file != null)
-            {
-                PathBox.Text = file.Path;
-            } else
-            {
-                var dialog = new Windows.UI.Popups.MessageDialog("Please Choose File");
-                await dialog.ShowAsync();
-            }
-        }
+ 
 
         private void PathBox_TextChanged(object sender, TextChangedEventArgs e)
         {
