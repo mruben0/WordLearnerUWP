@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WordLearner.ViewModels;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,6 +26,8 @@ namespace WordLearner
         public Progress()
         {
             this.InitializeComponent();
+            this.ViewModel = new ProgressViewModel();
         }
+        private ProgressViewModel ViewModel { get; set; }
     }
 }

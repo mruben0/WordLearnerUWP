@@ -8,9 +8,6 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}">
-        <TextBlock Style="{StaticResource TitleTextBlockStyle}"
-                           FontSize="28"
-                           VerticalAlignment="Top"
-                           Text="Your Progress"/>
+        <Button Command="{x:Bind ViewModel.getCollection}"/>
     </Grid>
 </Page>

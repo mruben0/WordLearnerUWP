@@ -57,9 +57,19 @@ namespace WordLearner.ViewModels
     //    }
     //}
 
-    public class BaseModel : INotifyPropertyChanged
+    public abstract class BaseModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public BaseModel()
+        {
+            InitAsync();
+        }
+
+        public virtual async Task InitAsync()
+        {
+
+        }
 
         protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
         {
