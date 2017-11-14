@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="95ac2adc-60e7-4a4b-a33b-d7de1b6a1fb1" Publisher="CN=Ram6ler" Version="1.0.0.0" />
-  <mp:PhoneIdentity PhoneProductId="95ac2adc-60e7-4a4b-a33b-d7de1b6a1fb1" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="4484Ram6ler.WordLearner" Publisher="CN=A1E0CBDB-8B7C-4129-B574-5C8CE6583832" Version="1.1.6.0" />
+  <mp:PhoneIdentity PhoneProductId="7d93692c-c2f2-430a-b43b-eec289b38bad" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>WordLearner</DisplayName>
     <PublisherDisplayName>Ram6ler</PublisherDisplayName>
@@ -16,7 +16,7 @@
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="WordLearner.App">
       <uap:VisualElements DisplayName="WordLearner" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="WordLearner" BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square310x310Logo="Assets\LargeTile.png" Square71x71Logo="Assets\SmallTile.png">
         </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
