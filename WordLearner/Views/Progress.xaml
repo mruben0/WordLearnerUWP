@@ -8,6 +8,22 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}">
-        <Button Command="{x:Bind ViewModel.getCollection}"/>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Button Grid.Column="0" Height="35" Content="Get Result" Margin="2,2,2,2" Grid.Row="0" Command="{x:Bind ViewModel.GetCollection}" />
+        <Button Grid.Column="0" Height="35" Content="Del Result" Margin="5,5,5,5"  Grid.Row="1" VerticalAlignment="Top" Command="{x:Bind ViewModel.DelCollection}" />
+        <TextBlock Grid.Column="1" Grid.Row="0" Text="Learned List" />
+        <TextBlock Grid.Column="2" Grid.Row="0" Text="Mistakes" />
+        <ListView  Grid.Column="1" Grid.Row="1" Margin="5,0,0,0" ItemsSource="{x:Bind ViewModel.Learned}" />
+        <ListView Grid.Column="2" Grid.Row="1" Margin="7,0,0,0"  ItemsSource="{x:Bind ViewModel.Mistaked}" />
     </Grid>
 </Page>

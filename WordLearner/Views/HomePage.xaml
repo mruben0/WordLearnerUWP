@@ -13,14 +13,22 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <HubSection Grid.Row="0" Header="TestingHEader" Margin="0,5,0,0" Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}" Width="Auto" Height="250">
+        <HubSection Grid.Row="0" Header="Welcome" Margin="0,5,0,0" Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}" Width="Auto" Height="250">
             <DataTemplate>
-                <Grid>
-                    <TextBlock Text="The most recent news will be here."
-                           Style="{ThemeResource BodyTextBlockStyle}" />
-                </Grid>
+                <StackPanel>
+                    <TextBlock Text="Word Learner will help You learn new words."
+                           Style="{ThemeResource TitleTextBlockStyle}" />
+                    <TextBlock Margin="30,10,0,0" Text="All You need is adding Your excel dictionary to Main Page. Other file formats will be available soon.
+Learned Words"
+                           Style="{ThemeResource TitleTextBlockStyle}" />
+                    <StackPanel Orientation="Horizontal">
+                    </StackPanel>
+                </StackPanel>
             </DataTemplate>
         </HubSection>
+        <Grid Opacity=".1" Grid.Row="0" Margin="0,5,0,0" Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}" Width="Auto" Height="250">
+            <Image Source="../Assets/3.PNG" Width="Auto" Height="250" />
+        </Grid>
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -31,12 +39,11 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <!--<TextBox Text="{x:Bind ViewModel.testing, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />-->
-            <HubSection Grid.Row="0" Grid.Column="0"  Header="{x:Bind ViewModel.testing}" Margin="3,5,3,0" Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}" Width="Auto" Height="250"></HubSection>
-            <!--<Button Grid.Row="0" Grid.Column="1" Command="{x:Bind ViewModel.TestCommand}" />-->
-            <HubSection Grid.Row="0" Grid.Column="1" Header="Main" Margin="3,5,3,0" Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}" Width="Auto" Height="250"></HubSection>
-            <HubSection Grid.Row="1" Grid.Column="0" Header="Main" Margin="3,5,3,0" Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}" Width="Auto" Height="250"></HubSection>
-            <HubSection Grid.Row="1" Grid.Column="1" Header="Main" Margin="3,5,3,0" Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}" Width="Auto" Height="250"></HubSection>
+            <HubSection Grid.Row="0" Grid.Column="0" Tapped="HubSection_Tapped"  Header="Add Dictionaries" Margin="3,5,3,0" Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}" Width="Auto" Height="250">
+            </HubSection>
+            <HubSection Grid.Row="0" Grid.Column="1" Tapped="LearnWords_Tapped" Name="LearnWords"  Header="Learn Words" Margin="3,5,3,0" Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}" Width="Auto" Height="250"></HubSection>
+            <HubSection Grid.Row="1" Grid.Column="0" Tapped="SeeProgress_Tapped" Name ="SeeProgress" Header="See Progress" Margin="3,5,3,0" Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}" Width="Auto" Height="250"></HubSection>
+            <HubSection Grid.Row="1" Grid.Column="1" Tapped="About_Tapped" Name="About" Header="About us" Margin="3,5,3,0" Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}" Width="Auto" Height="250"></HubSection>
         </Grid>
     </Grid>
 </Page>

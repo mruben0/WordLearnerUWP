@@ -28,6 +28,27 @@ namespace WordLearner
             this.InitializeComponent();
             this.ViewModel = new HomeViewModel();
         }
+
         public HomeViewModel ViewModel { get; set; }
+
+        private void HubSection_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(Main));
+        }
+
+        private void LearnWords_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(LearnWords));
+        }
+
+        private void SeeProgress_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(Progress));
+        }
+
+        private void About_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(Contacts));
+        }
     }
 }

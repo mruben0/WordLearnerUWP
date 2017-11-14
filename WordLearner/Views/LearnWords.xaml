@@ -59,7 +59,7 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="0" BorderThickness="0" IsReadOnly="True" Text="Add Column Label for Answer and Translation" />
+                <TextBox Grid.Column="0" BorderThickness="0" IsReadOnly="True" Text="Add Column Label for Question and Translation" />
                 <TextBox Margin="2,0,0,0" Grid.Column="1" Text="{x:Bind viewModel.AskLetter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  BorderThickness="1" MaxLength="2" Width="10" />
                 <TextBox Margin="2,0,0,0" Grid.Column="2" Text="{x:Bind viewModel.AnswLetter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  BorderThickness="1" MaxLength="2" Width="10" />
                 <Button Click="HidePannel_Click"  Margin="2,0,0,0" Width="Auto"  Height="30" Opacity=".5" Content="Choose" Name="HidePannel" Grid.Column="3" />
@@ -92,7 +92,7 @@
 
             <TextBlock Grid.Row="0" Grid.Column="0" Text="First word N: " />
             <TextBox Margin="3,0,0,0" Grid.Row="0" Grid.Column="1" Text="{x:Bind viewModel.Start, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="First word N: " />
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Last word N: " />
             <TextBox Margin="3,3,0,0" Grid.Row="1" Grid.Column="1" Text="{x:Bind viewModel.End, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
         <Grid Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,20">
@@ -110,11 +110,10 @@
 
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Right:   " />
             <TextBlock Grid.Row="0" Grid.Column="1"  Text="{x:Bind viewModel.LearnedCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBlock Grid.Row="0" Grid.Column="2" Text="Wrong:   " />
+            <TextBlock Margin="20,0,0,0" Grid.Row="0" Grid.Column="2" Text="Wrong:   " />
             <TextBlock Grid.Row="0" Grid.Column="3" Text="{x:Bind viewModel.WrongCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-            <ComboBox ItemsSource="{x:Bind viewModel.Learned}" Grid.Row="1" Grid.Column="1">
-            </ComboBox>
-            <ComboBox ItemsSource="{x:Bind viewModel.WrongList}" Grid.Row="1" Grid.Column="3" />
+            <ListView  Height="100" Width="Auto" ItemsSource="{x:Bind viewModel.Learned}" Grid.Row="1" Grid.Column="1" />
+            <ListView  Height="100"  ItemsSource="{x:Bind viewModel.WrongList}" Grid.Row="1" Grid.Column="3" />
             <Button Content="Save" Command="{x:Bind viewModel.SaveChanges}" Opacity=".5" Margin="0,3,0,0" Grid.Row="2" Grid.Column="3" />
         </Grid>
     </Grid>

@@ -97,6 +97,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\DirectoryManager.cs" />
+    <Compile Include="Models\HelperTools.cs" />
     <Compile Include="Models\IOManager.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\LearnWordsViewModel.cs" />
@@ -138,6 +139,9 @@
     <None Include="WordLearner_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\1.PNG" />
+    <Content Include="Assets\2.PNG" />
+    <Content Include="Assets\3.PNG" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-125.png" />
     <Content Include="Assets\SplashScreen.scale-150.png" />

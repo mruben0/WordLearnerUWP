@@ -17,66 +17,85 @@ namespace WordLearner.ViewModels
         private IOManager managerIO;
         private string appData;
         private string savedPlace;
-        StorageFolder sf;
-        StorageFile LearnedDataFile;
-        StorageFile MistakedFile;
+        private HelperTools tools;
 
         public ProgressViewModel()
         {
+            this.tools = new HelperTools();
             this.DM = new DirectoryManager();
             this.managerIO = new IOManager();
             appData = DM.GetAppDataPath("WordLearner");
             savedPlace = Path.Combine(appData, "Saves");
         }
 
-        //public override async Task InitAsync()
-        //{   
-        //    sf = await StorageFolder.GetFolderFromPathAsync(savedPlace);
-        //    LearnedDataFile = await sf.GetFileAsync("LearnedData.wl");
-        //    MistakedFile = await sf.GetFileAsync("MistakeData");
-        //    var l = await Windows.Storage.FileIO.ReadLinesAsync(LearnedDataFile);
-        //    var m = await Windows.Storage.FileIO.ReadLinesAsync(MistakedFile);
-
-        //    Learned = (ObservableCollection<string>)l;
-        //    Mistaked = (ObservableCollection<string>)m;
-        //}
-        //public override async Task init()
-        //{
-        //        sf = await StorageFolder.GetFolderFromPathAsync(savedPlace);
-        //        LearnedDataFile = await sf.GetFileAsync("LearnedData.wl");
-        //        MistakedFile = await sf.GetFileAsync("MistakeData");
-        //        var l = await Windows.Storage.FileIO.ReadLinesAsync(LearnedDataFile);
-        //        var m = await Windows.Storage.FileIO.ReadLinesAsync(MistakedFile);
-
-        //        Learned = (ObservableCollection<string>)l;
-        //        Mistaked = (ObservableCollection<string>)m;
-
-        //}
-
-
-        public ICommand getCollection
+        public ICommand GetCollection
         {
             get => new RelayCommand(async () =>
             {
-                sf = await StorageFolder.GetFolderFromPathAsync(savedPlace);
-                LearnedDataFile = await sf.GetFileAsync("LearnedData.wl");
-                MistakedFile = await sf.GetFileAsync("MistakeData");
-                var l = await Windows.Storage.FileIO.ReadLinesAsync(LearnedDataFile);
-                var m = await Windows.Storage.FileIO.ReadLinesAsync(MistakedFile);
+                try
+                {
+                    StorageFolder sf = await StorageFolder.GetFolderFromPathAsync(savedPlace);
+                    StorageFile LearnedDataFile = await sf.GetFileAsync("LearnedData.wl");
+                    StorageFile MistakedFile = await sf.GetFileAsync("MistakeData.wl");
+                    var learn = await Windows.Storage.FileIO.ReadLinesAsync(LearnedDataFile);
+                    var mistaken = await Windows.Storage.FileIO.ReadLinesAsync(MistakedFile);
 
-                Learned = (ObservableCollection<string>)l;
-                Mistaked = (ObservableCollection<string>)m;
+                    if (Learned.Count == 0)
+                    {
+                        foreach (var item in learn)
+                        {
+                            Learned.Add(item);
+                        }
+                    }
+
+                    if (Mistaked.Count == 0)
+                    {
+                        foreach (var item in mistaken)
+                        {
+                            Mistaked.Add(item);
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    var dialog = new Windows.UI.Popups.MessageDialog("You don't have saved Data. \nPlease Learn some word and click \"Save\" button in \"Learn Word\" Page ");
+                    await dialog.ShowAsync();
+                }
             });
         }
 
-        private ObservableCollection<string> learned;
+        public ICommand DelCollection
+        {
+            get => new RelayCommand(async () =>
+             {
+                 try
+                 {
+                     tools.CleanList(Learned);
+                     tools.CleanList(Mistaked);
+                     StorageFolder sf = await StorageFolder.GetFolderFromPathAsync(savedPlace);
+                     StorageFile LearnedDataFile = await sf.GetFileAsync("LearnedData.wl");
+                     StorageFile MistakedFile = await sf.GetFileAsync("MistakeData.wl");
+                     await Windows.Storage.FileIO.WriteTextAsync(LearnedDataFile, "");
+                     await Windows.Storage.FileIO.WriteTextAsync(MistakedFile, "");
+                 }
+                 catch (Exception)
+                 {
+                     var dialog = new Windows.UI.Popups.MessageDialog("You don't have saved Data. \nPlease Learn some word and click \"Save\" button in \"Learn Word\" Page ");
+                     await dialog.ShowAsync();
+                 }
+             });
+        }
+
+        private ObservableCollection<string> learned = new ObservableCollection<string>();
+
         public ObservableCollection<string> Learned
         {
             get => learned;
-            set => SetProperty(ref learned, value); 
+            set => SetProperty(ref learned, value);
         }
 
-        private ObservableCollection<string> mistaked;
+        private ObservableCollection<string> mistaked = new ObservableCollection<string>();
+
         public ObservableCollection<string> Mistaked
         {
             get => mistaked;

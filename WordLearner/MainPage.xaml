@@ -19,7 +19,6 @@
             <NavigationViewItem Icon="OpenLocal" Content="Main" Tag="Main" />
             <NavigationViewItem Icon="Slideshow" Content="Learn Words" Tag="LearnWords" />
             <NavigationViewItem Icon="Library" Content="Your Progress" Tag="Progress" />
-            <NavigationViewItem Icon="Help" Content="Help" Tag="Help" />
             <NavigationViewItem Icon="ContactInfo" Content="Contact us" Tag="Contacts" />
         </NavigationView.MenuItems>
 

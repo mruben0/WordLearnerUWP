@@ -15,7 +15,11 @@ namespace WordLearner.ViewModels
         {
             var DM = new DirectoryManager();
             var appdata = DM.GetAppDataPath("WordLearner");
-            List<string> filecollection = DM.GetFileList(appdata, "xlsx");
+            List<string> xlsxcollection = DM.GetFileList(appdata, "xlsx");
+            List<string> wlcollection = DM.GetFileList(appdata, "wl");
+            List<string> filecollection = new List<string>();
+            filecollection.AddRange(xlsxcollection);
+            filecollection.AddRange(wlcollection);
 
             for (int i = 0; i < filecollection.Count; i++)
             {

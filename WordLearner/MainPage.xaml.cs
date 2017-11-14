@@ -31,41 +31,47 @@ namespace WordLearner
         {
             if (args.IsSettingsInvoked)
             {
-                ContentFrame.Navigate(typeof(Settings));
-            } else switch (args.InvokedItem)
-                     {
-                         case "Home":
-                             ContentFrame.Navigate(typeof(HomePage));
-                             break;
-                         case "Main":
-                             ContentFrame.Navigate(typeof(Main));
-                             break;               
-                         case "Learn Words":
-                             ContentFrame.Navigate(typeof(LearnWords));
-                             break;
-                         case "Your Progress":
-                             ContentFrame.Navigate(typeof(Progress));
-                             break;
-                         case "Help":
-                             ContentFrame.Navigate(typeof(Help));
-                             break;
-                         case "Contact us":
-                             ContentFrame.Navigate(typeof(Contacts));
-                             break;                       
-                         default:
-                             ContentFrame.Navigate(typeof(HomePage));
-                             break;
-                     }
+                ContentFrame.Navigate(typeof(Contacts));
+            }
+            else switch (args.InvokedItem)
+                {
+                    case "Home":
+                        ContentFrame.Navigate(typeof(HomePage));
+                        break;
+
+                    case "Main":
+                        ContentFrame.Navigate(typeof(Main));
+                        break;
+
+                    case "Learn Words":
+                        ContentFrame.Navigate(typeof(LearnWords));
+                        break;
+
+                    case "Your Progress":
+                        ContentFrame.Navigate(typeof(Progress));
+                        break;
+
+                    case "Help":
+                        ContentFrame.Navigate(typeof(Help));
+                        break;
+
+                    case "Contact us":
+                        ContentFrame.Navigate(typeof(Contacts));
+                        break;
+
+                    default:
+                        ContentFrame.Navigate(typeof(HomePage));
+                        break;
+                }
         }
 
         private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
-           
         }
 
         private void NavView_Loaded(object sender, RoutedEventArgs e)
         {
-            ContentFrame.Navigate(typeof(HomePage));            
+            ContentFrame.Navigate(typeof(HomePage));
         }
     }
 }
